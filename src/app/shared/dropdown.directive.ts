@@ -13,12 +13,12 @@ export class DropdownDirective implements OnInit{
     
   }
 
-  @HostListener('click') toggleDropdown(eventData: Event){
-    // this.renderer.setStyle(this.elementRef.nativeElement, 'class', 'open');
-    this.isOpen = !this.isOpen;
-  }
-
-  // @HostListener('document:click', ['$event']) toggleOpen(event: Event) {
-  //   this.isOpen = this.elementRef.nativeElement.contains(event.target) ? !this.isOpen : false;
+  // @HostListener('click') toggleDropdown(eventData: Event){
+  //   // this.renderer.setStyle(this.elementRef.nativeElement, 'class', 'open');
+  //   this.isOpen = !this.isOpen;
   // }
+
+  @HostListener('document:click', ['$event']) toggleOpen(event: Event) {
+    this.isOpen = this.elementRef.nativeElement.contains(event.target) ? !this.isOpen : false;
+  }
 }
