@@ -14,6 +14,7 @@ export class RecipeItemComponent {
   @Input() recipe: Recipe;
   // @Output() recipeSelected = new EventEmitter<void>();
 
+  @Input() index: number;
 
   ngOnInit(){}
 

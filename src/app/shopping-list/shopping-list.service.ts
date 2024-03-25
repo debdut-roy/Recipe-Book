@@ -19,8 +19,27 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient){
-    this.ingredients.push(ingredient);
+    let ingredientIndex = this.existsIngredient(ingredient);
+    if(ingredientIndex !== -1){
+      console.log(ingredient+' '+ingredientIndex);
+      this.ingredients[ingredientIndex].amount++;
+    }
+    else{
+      this.ingredients.push(ingredient);
+    }
     this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
+  existsIngredient(ingredient: Ingredient) {
+    var ingredientsSet = new Set(this.ingredients);
+    ingredientsSet.has(ingredient)
+    for(const [index, element] of this.ingredients.entries()){
+      if (element.name === ingredient.name) {
+        console.log('Found at '+index);
+        return index;
+      }
+    }
+    return -1;
   }
 
   addIngredients(ingredients: Ingredient[]) {
